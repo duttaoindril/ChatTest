@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico"> -->
+    <title>Hello World</title>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script> -->
+    <style>
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        #root {
+            font: 14px "Century Gothic", Futura, sans-serif;
+            padding: 20px;
+        }
+
+        ol,
+        ul {
+            padding-left: 30px;
+        }
+
+        .board-row:after {
+            clear: both;
+            content: "";
+            display: table;
+        }
+
+        .status {
+            margin-bottom: 10px;
+        }
+
+        .square {
+            background: #fff;
+            border: 1px solid #999;
+            float: left;
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 34px;
+            height: 34px;
+            margin-right: -1px;
+            margin-top: -1px;
+            padding: 0;
+            text-align: center;
+            width: 34px;
+        }
+
+        .square:focus {
+            outline: none;
+        }
+
+        .kbd-navigation .square:focus {
+            background: #ddd;
+        }
+
+        .game {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .game-info {
+            margin-left: 20px;
+        }
+
+        .bold {
+            font-weight: 700;
+            border: 3px solid #000;
+        }
+
+        /* The toggle */
+
+        label {
+            display: block;
+            width: 54px;
+            height: 32px;
+            margin: 0px 0px;
+            border-radius: 100px;
+            margin-top: 15px;
+            transition: all 0.2s ease-in-out;
+            -webkit-transition: all 0.2s ease-in-out;
+            background-color: #E6E9EC;
+        }
+
+        input {
+            display: none;
+        }
+
+        i {
+            height: 28px;
+            width: 28px;
+            background: #ffffff;
+            display: inline-block;
+            border-radius: 100px;
+            margin-top: 2px;
+            margin-left: 2px;
+            transition: all 0.2s ease-in-out;
+            -webkit-transition: all 0.2s ease-in-out;
+            pointer-events: none;
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+        }
+
+        label:hover>i {
+            box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.20);
+            transform: scale(1.01);
+        }
+
+        input:checked+label>i {
+            margin-left: 24px;
+        }
+
+        label:active {
+            background-color: #A6B9CB;
+        }
+
+        label:active>i {
+            width: 34px;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.20);
+        }
+
+        input:checked+label:active>i {
+            margin-left: 18px;
+        }
+
+        input:checked+label {
+            background-color: #008FFF;
+        }
+    </style>
+</head>
+
+<body>
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <script type="text/babel">
+        function calculateWinner(squares) {
+            const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+            for (let i = 0; i < lines.length; i++) {
+                const [a, b, c] = lines[i];
+                if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) return [squares[a], lines[i]];
+            }
+            return [null, null];
+        }
+        function Square(props) {
+            return (
+                <button className={"square " + props.bold} onClick={props.onClick}>
+                    {props.value}
+                </button>
+            );
+        }
+        class Board extends React.Component {
+            renderSquare(i, bold) {
+                return <Square key={i} value={this.props.squares[i]} onClick={() => this.props.onClick(i)} bold={bold} />;
+            }
+            getBold(current) {
+                var winner = calculateWinner(this.props.getBoard());
+                return winner[1] && winner[1].indexOf(current) > -1 ? "bold" : "";
+            }
+            renderBoard(numrows, numcols) {
+                var rows = [];
+                for (var i = 0; i < numrows; i++) {
+                    var currentRow = [];
+                    for (var j = 0; j < numcols; j++)
+                        currentRow.push(this.renderSquare(i * numrows + j, this.getBold(i * numrows + j)));
+                    rows.push(
+                        <div className="board-row" key={"row" + i}>
+                            {currentRow}
+                        </div>
+                    );
+                }
+                return rows;
+            }
+            render() {
+                return <div>{this.renderBoard(this.props.rows, this.props.cols)}</div>;
+            }
+        }
+        class Game extends React.Component {
+            static getDefault() {
+                return {
+                    history: [],
+                    xIsNext: true,
+                    stepNumber: 0,
+                    ascending: false
+                };
+            }
+            constructor(props) {
+                super(props);
+                this.state = Game.getDefault();
+            }
+            reset() {
+                this.setState(Game.getDefault());
+            }
+            flipOrder() {
+                this.setState({
+                    ascending: !this.state.ascending
+                });
+            }
+            getBoard(maximum) {
+                var max = Number.isInteger(maximum) ? maximum : this.state.history.length;
+                var moves = {};
+                for (var i = 0; i < max; i++)
+                    moves[Object.keys(this.state.history[i])[0]] = Object.values(this.state.history[i])[0];
+                var board = Object.assign([...Array(this.props.cols * this.props.rows).fill("")], moves);
+                return board;
+            }
+            handleClick(i) {
+                if (!calculateWinner(this.getBoard())[0] && !this.getBoard()[i])
+                    this.setState({
+                        history: Object.assign([...this.state.history], {
+                            [this.state.history.length]: { [i]: this.state.xIsNext ? "X" : "O" }
+                        }),
+                        xIsNext: !this.state.xIsNext,
+                        stepNumber: this.state.stepNumber + 1
+                    });
+            }
+            jumpTo(step) {
+                this.setState({
+                    stepNumber: step,
+                    xIsNext: step % 2 === 0
+                });
+            }
+            renderJumpButton(i, move, bold) {
+                var coords = "";
+                if (move) {
+                    var num = parseInt(Object.keys(move)[0], 10);
+                    var numm = Math.floor(num / this.props.rows) * this.props.cols;
+                    coords = " (" + (num - numm) + ", " + Math.floor(num / this.props.rows) + ")";
+                }
+                return (
+                    <li key={i}>
+                        <button className={bold ? "bold" : ""} onClick={() => this.jumpTo(i)}>
+                            {i ? "Go to move #" + i + coords : "Go to game start"}
+                        </button>
+                    </li>
+                );
+            }
+            render() {
+                const current = this.getBoard(this.state.stepNumber);
+                const winner = calculateWinner(current)[0];
+                var moves = [];
+                var done = this.state.history.length === this.props.cols * this.props.rows;
+                if (calculateWinner(this.getBoard())[0] || done) {
+                    for (var i = -1; i < this.state.history.length; i++)
+                        moves.push(
+                            this.renderJumpButton(
+                                (this.state.ascending ? i : this.state.history.length - i - 2) + 1,
+                                this.state.history[this.state.ascending ? i : this.state.history.length - i - 2],
+                                (this.state.ascending ? i : this.state.history.length - i - 2) + 1 === this.state.stepNumber
+                            )
+                        );
+                    moves.push(
+                        <div>
+                            <input type="checkbox" id="toggly" onClick={() => this.flipOrder()} />
+                            <label htmlFor="toggly">
+                                <i />
+                            </label>
+                            <p>{this.state.ascending ? "Ascending" : "Descending"}</p>
+                        </div>
+                    );
+                }
+                return (
+                    <div className="game">
+                        <div className="game-board">
+                            <Board
+                                squares={current}
+                                cols={this.props.cols}
+                                rows={this.props.rows}
+                                getBoard={i => this.getBoard(i)}
+                                onClick={i => this.handleClick(i)}
+                            />
+                        </div>
+                        <div className="game-info">
+                            <div>
+                                {winner
+                                    ? "Winner is Player " + winner + "!"
+                                    : done
+                                        ? "The match is a draw!"
+                                        : "Next up is player " + (this.state.xIsNext ? "X" : "O")}
+                            </div>
+                            <button onClick={() => this.reset()}>Reset the Game</button>
+                            <ol>{moves}</ol>
+                        </div>
+                    </div>
+                );
+            }
+        }
+        // ==================================================
+        // cls && cd react-app-generated\my-app && npm start
+        // cls && npm start
+        // ==================================================
+        var size = 3; //10;
+        ReactDOM.render(<Game cols={size} rows={size} />, document.getElementById("root"));
+    </script>
+</body>
+
+</html>

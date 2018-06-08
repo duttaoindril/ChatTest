@@ -1,0 +1,939 @@
+<html>
+<!-- cls && cd C:\Users\dutta\Documents\GitHub\CrestaTest\react-app-generated && start chrome http://localhost:3000/crestchatmockup.html && http-server -a localhost -p 3000 -->
+<!-- cls && cd C:\Users\dutta\Documents\GitHub\CrestaTest\react-app-generated && browser-sync start --proxy "localhost:3000" -b "chrome" --startPath "/crestchatmockup.html" --files "**/*" -->
+
+<!-- document.querySelector("#chatread ul").scrollLeft = document.querySelector("#chatread .user"+i).offsetLeft-50; -->
+<!-- document.querySelector("#chatread ul").scrollLeft = document.querySelector("#chatread .user"+i).offsetLeft-document.querySelector("#chatread
+.user"+i).clientWidth-100; -->
+<!-- document.querySelector("#chatread ul").scrollLeft = document.querySelector("#chatread .user0").offsetLeft - (document.querySelector("#chatread").clientWidth - document.querySelector("#chatread .user0").clientWidth)/2 -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>CrestChat Mockup</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet"> -->
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            /* clear: both; */
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p {
+            margin: 0px;
+        }
+
+        hr {
+            margin: 10px;
+        }
+
+        html,
+        body,
+        #app {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-weight: 300;
+            font-family: 'Roboto', sans-serif;
+            background-color: #E0E0E0;
+        }
+
+        .box {
+            height: auto;
+            display: inline-block;
+        }
+
+        .padBox {
+            padding: 10px;
+        }
+
+        .padCont {
+            padding: 10px 20px;
+        }
+
+        .padContSmll {
+            padding: 1px 7px;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            overflow-y: auto;
+        }
+
+        .material {
+            background-color: white;
+            border-radius: 25px;
+            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .16), 0 4px 4px 0 rgba(0, 0, 0, .10), 0 3px 3px 0 rgba(0, 0, 0, .08);
+        }
+
+        #chatread {
+            left: 0px;
+            top: 0px;
+            height: 81%;
+            width: 79%;
+            padding-right: 0px;
+        }
+
+        #chatread ul {
+            padding-right: 0px;
+            display: flex;
+            flex-flow: row;
+            list-style-type: none;
+            overflow-x: auto;
+        }
+
+        #chatread ul li {
+            flex-grow: 1;
+            margin: 7px;
+            text-align: center;
+            min-width: 450px;
+        }
+
+        #chatread ul li img {
+            width: 75px;
+            height: 75px;
+            margin-top: 7px;
+        }
+
+        #chatread ul li h3 {
+            margin-top: 10px;
+        }
+
+        #chatread .messages {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chatread .messages .user {
+            align-self: flex-start;
+            margin: 0px 40px 10px 10px;
+            color: #EEEEEE;
+            background-color: #37474F;
+            width: fit-content;
+        }
+
+        #chatread .messages .customer {
+            align-self: flex-end;
+            margin: 0px 10px 10px 40px;
+            width: fit-content;
+        }
+
+        #chatsend {
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            width: 78%;
+            height: 16.8%;
+        }
+
+        #chatsend>.container {
+            display: flex;
+            padding-right: 0px;
+            flex-direction: column;
+        }
+
+        #chatdetails {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #chatdetails>* {
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-right: 20px;
+        }
+
+        #chatdetails img {
+            width: 6%;
+        }
+
+        #chatdetails .smrply {
+            width: fit-content;
+            height: fit-content;
+            border-radius: 100px;
+        }
+
+        #chatbar {
+            width: calc(100% - 325px);
+            align-self: flex-end;
+        }
+
+        #chatbar input {
+            outline: none;
+            border: none;
+            resize: none;
+            background: rgba(0, 0, 0, 0);
+            width: 100%;
+            font-size: inherit;
+            font-family: inherit;
+            line-height: inherit;
+            text-align: inherit;
+        }
+
+        #chatbar input::placeholder {
+            opacity: .5;
+        }
+
+        #sidebar {
+            right: 0px;
+            top: 0px;
+            width: 22%;
+            height: 100%;
+            position: absolute;
+            padding: 10px;
+        }
+
+        .queueMessage {
+            width: 100%;
+            max-height: 100px;
+            margin-bottom: 13px;
+        }
+
+        .queueMessage img {
+            height: 100%;
+            width: auto;
+            display: inline-block;
+        }
+
+        .queueMessage .box {
+            margin-left: 10px;
+            vertical-align: top;
+        }
+
+        .user0 {
+            background-color: rgba(255, 152, 0, .725);
+        }
+
+        .user1 {
+            background-color: rgba(255, 87, 34, .725);
+        }
+
+        .user2 {
+            background-color: rgba(233, 30, 99, .725);
+        }
+
+        .user3 {
+            background-color: rgba(0, 150, 136, .725);
+        }
+
+        .user4 {
+            background-color: rgba(103, 58, 183, .725);
+        }
+
+        .user5 {
+            background-color: rgba(205, 220, 57, .725);
+        }
+
+        .user6 {
+            background-color: rgba(3, 169, 244, .725);
+        }
+
+        .user7 {
+            background-color: rgba(76, 175, 80, .725);
+        }
+
+        .user8 {
+            background-color: rgba(255, 193, 7, .725);
+        }
+
+        .user9 {
+            background-color: rgba(0, 188, 212, .725);
+        }
+
+        .user10 {
+            background-color: rgba(139, 195, 74, .725);
+        }
+
+        .user11 {
+            background-color: rgba(33, 150, 243, .725);
+        }
+
+        .user12 {
+            background-color: rgba(255, 235, 59, .725);
+        }
+
+        .user13 {
+            background-color: rgba(63, 81, 181, .725);
+        }
+
+        .user14 {
+            background-color: rgba(244, 67, 54, .725);
+        }
+
+        .user15 {
+            background-color: rgba(156, 39, 176, .725);
+        }
+
+        #chatdetails p.user0,
+        #chatdetails h3.user0 {
+            color: rgb(255, 152, 0);
+        }
+
+        #chatdetails p.user0.smrply {
+            color: rgb(255, 152, 0);
+            border: rgba(255, 152, 0, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user1,
+        #chatdetails h3.user1 {
+            color: rgb(255, 87, 34);
+        }
+
+        #chatdetails p.user1.smrply {
+            color: rgb(255, 87, 34);
+            border: rgba(255, 87, 34, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user2,
+        #chatdetails h3.user2 {
+            color: rgb(233, 30, 99);
+        }
+
+        #chatdetails p.user2.smrply {
+            color: rgb(233, 30, 99);
+            border: rgba(233, 30, 99, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user3,
+        #chatdetails h3.user3 {
+            color: rgb(0, 150, 136);
+        }
+
+        #chatdetails p.user3.smrply {
+            color: rgb(0, 150, 136);
+            border: rgba(0, 150, 136, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user4,
+        #chatdetails h3.user4 {
+            color: rgb(103, 58, 183);
+        }
+
+        #chatdetails p.user4.smrply {
+            color: rgb(103, 58, 183);
+            border: rgba(103, 58, 183, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user5,
+        #chatdetails h3.user5 {
+            color: rgb(205, 220, 57);
+        }
+
+        #chatdetails p.user5.smrply {
+            color: rgb(205, 220, 57);
+            border: rgba(205, 220, 57, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user6,
+        #chatdetails h3.user6 {
+            color: rgb(3, 169, 244);
+        }
+
+        #chatdetails p.user6.smrply {
+            color: rgb(3, 169, 244);
+            border: rgba(3, 169, 244, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user7,
+        #chatdetails h3.user7 {
+            color: rgb(76, 175, 80);
+        }
+
+        #chatdetails p.user7.smrply {
+            color: rgb(76, 175, 80);
+            border: rgba(76, 175, 80, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user8,
+        #chatdetails h3.user8 {
+            color: rgb(255, 193, 7);
+        }
+
+        #chatdetails p.user8.smrply {
+            color: rgb(255, 193, 7);
+            border: rgba(255, 193, 7, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user9,
+        #chatdetails h3.user9 {
+            color: rgb(0, 188, 212);
+        }
+
+        #chatdetails p.user9.smrply {
+            color: rgb(0, 188, 212);
+            border: rgba(0, 188, 212, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user10,
+        #chatdetails h3.user10 {
+            color: rgb(139, 195, 74);
+        }
+
+        #chatdetails p.user10.smrply {
+            color: rgb(139, 195, 74);
+            border: rgba(139, 195, 74, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user11,
+        #chatdetails h3.user11 {
+            color: rgb(33, 150, 243);
+        }
+
+        #chatdetails p.user11.smrply {
+            color: rgb(33, 150, 243);
+            border: rgba(33, 150, 243, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user12,
+        #chatdetails h3.user12 {
+            color: rgb(255, 235, 59);
+        }
+
+        #chatdetails p.user12.smrply {
+            color: rgb(255, 235, 59);
+            border: rgba(255, 235, 59, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user13,
+        #chatdetails h3.user13 {
+            color: rgb(63, 81, 181);
+        }
+
+        #chatdetails p.user13.smrply {
+            color: rgb(63, 81, 181);
+            border: rgba(63, 81, 181, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user14,
+        #chatdetails h3.user14 {
+            color: rgb(244, 67, 54);
+        }
+
+        #chatdetails p.user14.smrply {
+            color: rgb(244, 67, 54);
+            border: rgba(244, 67, 54, .725) solid 1.85px;
+        }
+
+        #chatdetails p.user15,
+        #chatdetails h3.user15 {
+            color: rgb(156, 39, 176);
+        }
+
+        #chatdetails p.user15.smrply {
+            color: rgb(156, 39, 176);
+            border: rgba(156, 39, 176, .725) solid 1.85px;
+        }
+
+        #chatdetails p,
+        #chatdetails h3 {
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .user1 input,
+        .user1 input::placeholder,
+        .user1 h3,
+        .user1 p,
+        .user2 input,
+        .user2 input::placeholder,
+        .user2 h3,
+        .user2 p,
+        .user3 input,
+        .user3 input::placeholder,
+        .user3 h3,
+        .user3 p,
+        .user4 input,
+        .user4 input::placeholder,
+        .user4 h3,
+        .user4 p,
+        .user6 input,
+        .user6 input::placeholder,
+        .user6 h3,
+        .user6 p,
+        .user11 input,
+        .user11 input::placeholder,
+        .user11 h3,
+        .user11 p,
+        .user13 input,
+        .user13 input::placeholder,
+        .user13 h3,
+        .user13 p,
+        .user14 input,
+        .user14 input::placeholder,
+        .user14 h3,
+        .user14 p,
+        .user15 input,
+        .user15 input::placeholder,
+        .user15 h3,
+        .user15 p {
+            color: #EEEEEE;
+        }
+
+        .user0 input,
+        .user0 input::placeholder,
+        .user0 h3,
+        .user0 p,
+        .user5 input,
+        .user5 input::placeholder,
+        .user5 h3,
+        .user5 p,
+        .user7 input,
+        .user7 input::placeholder,
+        .user7 h3,
+        .user7 p,
+        .user8 input,
+        .user8 input::placeholder,
+        .user8 h3,
+        .user8 p,
+        .user9 input,
+        .user9 input::placeholder,
+        .user9 h3,
+        .user9 p,
+        .user10 input,
+        .user10 input::placeholder,
+        .user10 h3,
+        .user10 p,
+        .user12 input,
+        .user12 input::placeholder,
+        .user12 h3,
+        .user12 p {
+            color: #37474F;
+        }
+
+        .queueMessage .priority {
+            font-weight: 400;
+            width: fit-content;
+        }
+
+        .priority.urgent {
+            color: #d50000;
+        }
+
+        .priority.high {
+            color: #FFAB00;
+        }
+
+        .priority.medium {
+            color: #00C853;
+        }
+
+        .priority.low {
+            color: #304FFE;
+        }
+
+        .unselected {
+            background-color: #ECEFF1;
+        }
+
+        .unselected h3 {
+            color: #37474F;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="chatread">
+            <ul class="padBox">
+                <li></li>
+                <li class="container material user0">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">
+                            <b>CUSTOMER MESSAGE:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut mollis
+                            nulla. Nunc ultrices id ligula a viverra. Sed eu urna mollis, dapibus odio vitae, ultricies sapien.
+                            Nulla facilisi. Nam molestie eros a nisi bibendum laoreet. Aenean et nibh porta, laoreet ligula
+                            et, fermentum nisi. Donec bibendum enim faucibus commodo volutpat. Pellentesque pulvinar vitae
+                            ipsum nec ornare. Phasellus maximus, ligula et pellentesque iaculis, dolor erat fermentum ipsum,
+                            sed elementum nisl erat id mauris. Integer efficitur gravida dapibus. In imperdiet dignissim
+                            urna, in commodo nunc euismod sed. Ut porttitor ex vitae ante tristique faucibus. Fusce rutrum
+                            velit eget sapien posuere pellentesque.</div>
+                        <div class="material box padBox user">
+                            <b>USER MESSAGE:</b> Pellentesque volutpat sed lacus at efficitur. Donec vehicula libero scelerisque
+                            libero eleifend vestibulum. Proin a sem nibh. Aenean leo lacus, facilisis id tempus sit amet,
+                            cursus sit amet lectus. Vivamus rhoncus consequat cursus. Nam tempus libero id justo luctus,
+                            ac interdum magna lacinia. Nunc fermentum sem eu velit viverra, at faucibus risus bibendum. Donec
+                            ornare accumsan tellus, malesuada malesuada eros facilisis ac. Mauris eu est ligula. Fusce elementum
+                            libero ut consectetur elementum. Vestibulum nec dolor eu odio placerat pharetra dignissim in
+                            velit. </div>
+                        <div class="material box padBox customer">
+                            <b>CUSTOMER MESSAGE:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut mollis
+                            nulla. Nunc ultrices id ligula a viverra. Sed eu urna mollis, dapibus odio vitae, ultricies sapien.
+                            Nulla facilisi. Nam molestie eros a nisi bibendum laoreet. Aenean et nibh porta, laoreet ligula
+                            et, fermentum nisi. Donec bibendum enim faucibus commodo volutpat. Pellentesque pulvinar vitae
+                            ipsum nec ornare. Phasellus maximus, ligula et pellentesque iaculis, dolor erat fermentum ipsum,
+                            sed elementum nisl erat id mauris. Integer efficitur gravida dapibus. In imperdiet dignissim
+                            urna, in commodo nunc euismod sed. Ut porttitor ex vitae ante tristique faucibus. Fusce rutrum
+                            velit eget sapien posuere pellentesque.</div>
+                        <div class="material box padBox user">
+                            <b>USER MESSAGE:</b> Pellentesque volutpat sed lacus at efficitur. Donec vehicula libero scelerisque
+                            libero sit amet lectus. Vivamus rhoncus consequat cursus. Nam tempus libero id justo luctus,
+                            ac interdum magna lacinia. Nunc fermentum sem eu velit viverra, at faucibus risus bibendum. Donec
+                            ornare accumsan tellus, malesuada malesuada eros facilisis ac. Mauris eu est ligula. Fusce elementum
+                            libero ut consectetur elementum. Vestibulum nec dolor eu odio placerat pharetra dignissim in
+                            velit.
+                        </div>
+                    </div>
+                </li>
+                <li class="container material user1 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user2 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user3 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user4 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user5 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user6 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user7 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user8 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user9 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user10 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user11 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user12 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user13 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user14 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li class="container material user15 unselected">
+                    <img src="./avatarPlaceholder.png">
+                    <h3>Customer Name</h3>
+                    <hr>
+                    <div class="messages">
+                        <div class="material box padBox customer">Customer Message</div>
+                        <div class="material box padBox user">User Message</div>
+                    </div>
+                </li>
+                <li></li>
+            </ul>
+        </div>
+        <div id="chatsend">
+            <div class="container padBox">
+                <div id="chatdetails">
+                    <img src="./avatarPlaceholder.png">
+                    <div>
+                        <h3 class="user0">Customer Name</h3>
+                        <b>
+                            <p class="user0">Details</p>
+                        </b>
+                        <b>
+                            <p class="user0">Details</p>
+                        </b>
+                    </div>
+                    <p class="smrply user0 box padCont">Smart Reply</p>
+                    <p class="smrply user0 box padCont">Smart Reply</p>
+                    <p class="smrply user1 box padCont">Smart Reply</p>
+                    <p class="smrply user2 box padCont">Smart Reply</p>
+                    <p class="smrply user3 box padCont">Smart Reply</p>
+                </div>
+            </div>
+        </div>
+        <div id="chatbar" class="material box padCont user0">
+            <input type="text" name="chat" autofocus autocorrect spellcheck placeholder="Chat here...">
+        </div>
+        <div id="sidebar">
+            <div class="material container padBox">
+                <div class="material box padBox queueMessage user0">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority urgent">Priority urgent</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user1">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority urgent">Priority urgent</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user2">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority high">Priority high</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user3">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority high">Priority high</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user4">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority high">Priority high</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user5">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority medium">Priority medium</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user6">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority medium">Priority medium</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user7">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority medium">Priority medium</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user8">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority medium">Priority medium</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user9">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority medium">Priority medium</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user10">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority low">Priority low</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user11">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority low">Priority low</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user12">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority low">Priority low</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user13">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority low">Priority low</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user14">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority low">Priority low</p>
+                    </div>
+                </div>
+                <div class="material box padBox queueMessage user15">
+                    <img src="./avatarPlaceholder.png">
+                    <div class="box">
+                        <h3>Name: Message</h3>
+                        <p>Last Replied</p>
+                        <p>Mood</p>
+                        <p class="material padContSmll priority low">Priority low</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
