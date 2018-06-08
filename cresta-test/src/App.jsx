@@ -7,12 +7,7 @@ import ChatBox from "./components/ChatBox/ChatBox.jsx";
 import ChatBar from "./components/ChatBar/ChatBar.jsx";
 import ChatQueue from "./components/ChatQueue/ChatQueue.jsx";
 import ChatWindows from "./components/ChatWindows/ChatWindows.jsx";
-function Shell() {
-    return <App />;
-}
-export default Shell;
-
-class App extends Component {
+export default class App extends Component {
     state = {
         currentUser: 0,
         currentText: "",
@@ -124,6 +119,14 @@ class App extends Component {
             }
         ]
     };
+    componentDidMount() {
+        this.setupScrollers();
+    }
+    loadSmartReply(smrply) {
+        this.switchWindow(smrply.user);
+        this.setState({ currentText: this.state.currentText + " " + smrply.text });
+    }
+    handleChatInput = e => this.setState({ currentText: e.target.value });
     handleNewMessageRecieved(sender, message) {
         var tempState = this.state;
         tempState.conversations[sender].conversation.push({ sent: sender, text: message });
@@ -131,7 +134,6 @@ class App extends Component {
         this.scrollToBottom(sender, true);
         this.setState(tempState);
     }
-    handleChatInput = e => this.setState({ currentText: e.target.value });
     handleNewMessageSend(message) {
         if (!message) return;
         var tempState = this.state;
@@ -140,10 +142,6 @@ class App extends Component {
         tempState.currentText = "";
         this.scrollToBottom(tempState.currentUser, false);
         this.setState(tempState);
-    }
-    loadSmartReply(smrply) {
-        this.switchWindow(smrply.user);
-        this.setState({ currentText: this.state.currentText + " " + smrply.text });
     }
     generateQueue() {
         const getMood = (sentTime, recievedTime) => "happy";
@@ -180,9 +178,6 @@ class App extends Component {
         return this.generateQueue().map(chat => {
             return { user: chat.userId, text: "What is " + chat.lastMessage + "?" };
         });
-    }
-    componentDidMount() {
-        this.setupScrollers();
     }
     render() {
         this.scrollToCurrent();
