@@ -13,7 +13,7 @@ const ChatWindows = props => (
                     <img src={props.face} alt="Placeholder Customer Avatar" />
                     <h3>{chatWindow.name + " - #" + (chatWindow.id + 1)}</h3>
                     <hr />
-                    <ChatWindowMessages data={chatWindow.conversation} state={props.state} id={chatWindow.id} />
+                    <ChatWindowMessages data={chatWindow} state={props.state} />
                 </li>
             ))}
             <li />

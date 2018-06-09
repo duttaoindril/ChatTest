@@ -140,7 +140,7 @@ body,
     color: #eeeeee;
 }
 
-#chatread .messages .user.temp p {
+#chatread .messages .user.temp {
     color: rgba(238, 238, 238, 0.5);
     background-color: rgba(55, 71, 79, 0.25);
 }
@@ -149,6 +149,15 @@ body,
     align-self: flex-end;
     margin: 0px 10px 10px 60px;
     width: fit-content;
+}
+
+#chatread .messages .customer p {
+    color: #37474f;
+}
+
+#chatread .messages .customer.temp {
+    color: rgba(55, 71, 79, 0.5);
+    background-color: rgba(238, 238, 238, 0.55);
 }
 
 #chatsend {
@@ -342,6 +351,66 @@ body,
 
 .user14 {
     background-color: rgba(244, 67, 54, 0.7);
+}
+
+#chatread .user0.unselected .messages .customer.temp {
+    background-color: rgba(255, 152, 0, 0.55);
+}
+
+#chatread .user1.unselected .messages .customer.temp {
+    background-color: rgba(255, 87, 34, 0.55);
+}
+
+#chatread .user2.unselected .messages .customer.temp {
+    background-color: rgba(233, 30, 99, 0.55);
+}
+
+#chatread .user3.unselected .messages .customer.temp {
+    background-color: rgba(0, 150, 136, 0.55);
+}
+
+#chatread .user4.unselected .messages .customer.temp {
+    background-color: rgba(103, 58, 183, 0.55);
+}
+
+#chatread .user5.unselected .messages .customer.temp {
+    background-color: rgba(205, 220, 57, 0.55);
+}
+
+#chatread .user6.unselected .messages .customer.temp {
+    background-color: rgba(156, 39, 176, 0.55);
+}
+
+#chatread .user7.unselected .messages .customer.temp {
+    background-color: rgba(76, 175, 80, 0.55);
+}
+
+#chatread .user8.unselected .messages .customer.temp {
+    background-color: rgba(255, 193, 7, 0.55);
+}
+
+#chatread .user9.unselected .messages .customer.temp {
+    background-color: rgba(0, 188, 212, 0.55);
+}
+
+#chatread .user10.unselected .messages .customer.temp {
+    background-color: rgba(139, 195, 74, 0.55);
+}
+
+#chatread .user11.unselected .messages .customer.temp {
+    background-color: rgba(33, 150, 243, 0.55);
+}
+
+#chatread .user12.unselected .messages .customer.temp {
+    background-color: rgba(255, 235, 59, 0.55);
+}
+
+#chatread .user13.unselected .messages .customer.temp {
+    background-color: rgba(63, 81, 181, 0.55);
+}
+
+#chatread .user14.unselected .messages .customer.temp {
+    background-color: rgba(244, 67, 54, 0.55);
 }
 
 p.user0.smrply {

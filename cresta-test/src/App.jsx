@@ -23,6 +23,118 @@ export default class App extends Component {
                     { sent: 0, text: "This is a tutorial chat." },
                     { sent: 0, text: "When other people **open this website**, they will pop up, and you can chat with them." }
                 ]
+            },
+            {
+                id: 1,
+                name: "Mark",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: -1, text: "messageA" }, { sent: 0, text: "messageA" }],
+                typing: "currently typing"
+            },
+            {
+                id: 2,
+                name: "Jennie",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: ""
+            },
+            {
+                id: 3,
+                name: "JennieWHY",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: ""
+            },
+            {
+                id: 4,
+                name: "Jennie",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: ""
+            },
+            {
+                id: 5,
+                name: "Jennie",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: "currently typing"
+            },
+            {
+                id: 6,
+                name: "Jennie",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: ""
+            },
+            {
+                id: 7,
+                name: "Jennie",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: ""
+            },
+            {
+                id: 8,
+                name: "Jennie",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: ""
+            },
+            {
+                id: 9,
+                name: "Jennie",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: ""
+            },
+            {
+                id: 10,
+                name: "Jennie",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: ""
+            },
+            {
+                id: 11,
+                name: "Jennie",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: "currently typing"
+            },
+            {
+                id: 12,
+                name: "Jennie",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: ""
+            },
+            {
+                id: 13,
+                name: "Jennie",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: ""
+            },
+            {
+                id: 14,
+                name: "Jennie",
+                lastRecieved: Date.now(),
+                lastSent: Date.now(),
+                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }],
+                typing: "currently typing"
             }
         ]
     };
@@ -90,7 +202,7 @@ export default class App extends Component {
         });
     }
     render() {
-        console.log("rendering");
+        // console.log("rendering");
         this.scrollToCurrent();
         this.setFocusToTextBox();
         var keyMap = { send: "enter", nextWindow: "ctrl+alt+right", prevWindow: "ctrl+alt+left", focus: "ctrl+alt+f" };
