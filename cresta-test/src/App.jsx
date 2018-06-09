@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import { HotKeys } from "react-hotkeys";
 // import logo from "./assets/Cresta Logo.svg";
 import "./styles/App.css";
@@ -17,105 +18,11 @@ export default class App extends Component {
                 name: "Tutorial Todd",
                 lastRecieved: Date.now(),
                 lastSent: Date.now(),
-                conversation: [{ sent: 0, text: "Hello Agent!" }, { sent: 0, text: "This is a tutorial chat." }]
-            },
-            {
-                id: 1,
-                name: "Mark",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: -1, text: "messageA" }, { sent: 0, text: "messageA" }]
-            },
-            {
-                id: 2,
-                name: "Jennie",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
-            },
-            {
-                id: 3,
-                name: "JennieWHY",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
-            },
-            {
-                id: 4,
-                name: "Jennie",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
-            },
-            {
-                id: 5,
-                name: "Jennie",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
-            },
-            {
-                id: 6,
-                name: "Jennie",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
-            },
-            {
-                id: 7,
-                name: "Jennie",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
-            },
-            {
-                id: 8,
-                name: "Jennie",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
-            },
-            {
-                id: 9,
-                name: "Jennie",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
-            },
-            {
-                id: 10,
-                name: "Jennie",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
-            },
-            {
-                id: 11,
-                name: "Jennie",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
-            },
-            {
-                id: 12,
-                name: "Jennie",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
-            },
-            {
-                id: 13,
-                name: "Jennie",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
-            },
-            {
-                id: 14,
-                name: "Jennie",
-                lastRecieved: Date.now(),
-                lastSent: Date.now(),
-                conversation: [{ sent: 1, text: "messageA" }, { sent: -1, text: "messageA" }]
+                conversation: [
+                    { sent: 0, text: "Hello Agent!" },
+                    { sent: 0, text: "This is a tutorial chat." },
+                    { sent: 0, text: "When other people **open this website**, they will pop up, and you can chat with them." }
+                ]
             }
         ]
     };
@@ -126,7 +33,10 @@ export default class App extends Component {
         this.switchWindow(smrply.user);
         this.setState({ currentText: this.state.currentText + " " + smrply.text });
     }
-    handleChatInput = e => this.setState({ currentText: e.target.value });
+    handleChatInput = e => {
+        this.setState({ currentText: e.target.value });
+        this.scrollToBottom(this.state.currentUser, false, true);
+    };
     handleNewMessageRecieved(sender, message) {
         var tempState = this.state;
         tempState.conversations[sender].conversation.push({ sent: sender, text: message });
@@ -180,6 +90,7 @@ export default class App extends Component {
         });
     }
     render() {
+        console.log("rendering");
         this.scrollToCurrent();
         this.setFocusToTextBox();
         var keyMap = { send: "enter", nextWindow: "ctrl+alt+right", prevWindow: "ctrl+alt+left", focus: "ctrl+alt+f" };
@@ -193,6 +104,14 @@ export default class App extends Component {
         for (i = 0; i < 10; i++) handlers["switch" + i] = (event, window) => this.switchWindow(event.key - 1);
         return (
             <HotKeys keyMap={keyMap} handlers={handlers} id="app">
+                {/* {ReactDOM.createPortal(
+                    <div id="modal">
+                        <div>
+                            <h1>woah</h1>
+                        </div>
+                    </div>,
+                    document.getElementById("root")
+                )} */}
                 <ChatWindows state={this.state} face={face} windowClick={i => this.switchWindow(i)} />
                 <ChatBox
                     state={this.state}
@@ -216,9 +135,15 @@ export default class App extends Component {
         if (!this.windowExists(i)) return;
         this.setState({ currentUser: i });
     }
-    scrollToBottom(i, check) {
-        if (!check || !this.state.currentText)
-            document.querySelector("#chatread .user" + i).scrollTop = document.querySelector("#chatread .user" + i).scrollHeight;
+    scrollToBottom(i, checkEmptyText, checkScrolledUp) {
+        var chatWindow = document.querySelector("#chatread .user" + i);
+        if (
+            i > -1 &&
+            chatWindow &&
+            (!checkEmptyText || !this.state.currentText) &&
+            (!checkScrolledUp || !(chatWindow.scrollHeight - chatWindow.clientHeight - Math.round(chatWindow.scrollTop) > 100))
+        )
+            chatWindow.scrollTop = chatWindow.scrollHeight;
     }
     scrollToCurrent() {
         var _this = this;
