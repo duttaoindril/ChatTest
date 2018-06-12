@@ -1,0 +1,76 @@
+{
+  "_from": "react-server-boilerplate",
+  "_id": "react-server-boilerplate@1.0.2",
+  "_inBundle": false,
+  "_integrity": "sha1-BO8TMvBOmjNYtKUBy4cxyrEJPr0=",
+  "_location": "/react-server-boilerplate",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "react-server-boilerplate",
+    "name": "react-server-boilerplate",
+    "escapedName": "react-server-boilerplate",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-server-boilerplate/-/react-server-boilerplate-1.0.2.tgz",
+  "_shasum": "04ef1332f04e9a3358b4a501cb8731cab1093ebd",
+  "_spec": "react-server-boilerplate",
+  "_where": "C:\\Users\\dutta\\Documents\\GitHub\\CrestaTest",
+  "author": {
+    "name": "Roilan",
+    "email": "roilan14@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/Roilan/react-server-boilerplate/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "express": "^4.14.0",
+    "react": "^15.2.0",
+    "react-dom": "^15.2.0"
+  },
+  "deprecated": false,
+  "description": "React server side rendering boilerplate",
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "functionhappy": "^1.0.0",
+    "json-loader": "^0.5.4",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^4.0.0",
+    "snazzy": "^4.0.0",
+    "webpack": "^1.13.1",
+    "webpack-node-externals": "^1.2.0"
+  },
+  "homepage": "https://github.com/Roilan/react-server-boilerplate",
+  "keywords": [
+    "react",
+    "react server",
+    "reactjs"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "react-server-boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roilan/react-server-boilerplate.git"
+  },
+  "scripts": {
+    "build": "webpack",
+    "lint": "functionhappy | snazzy",
+    "start": "cd dist && node server"
+  },
+  "version": "1.0.2"
+}

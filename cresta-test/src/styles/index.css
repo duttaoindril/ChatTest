@@ -46,12 +46,24 @@ body,
     width: 100%;
     height: 100%;
     z-index: 2;
-    background-color: white;
+    background-color: #eeeeee;
     position: fixed;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+#modal div div {
+    display: inline-block;
+    text-align: left;
+    background-color: #37474f;
+    color: #fafafa;
+}
+
+#modal div .box {
+    margin-left: 20px;
+    transition: box-shadow 0.3s ease-in-out;
 }
 
 .box {
@@ -225,6 +237,7 @@ body,
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 9px;
 }
 
 #chatbar {
@@ -235,10 +248,12 @@ body,
     display: block;
 }
 
+#modal input,
 #chatbar input {
     outline: none;
     border: none;
     resize: none;
+    color: #fafafa;
     background: rgba(0, 0, 0, 0);
     width: 100%;
     font-size: inherit;
@@ -286,6 +301,7 @@ body,
     text-overflow: ellipsis;
 }
 
+#modal div .box:hover,
 #chatsend #chatdetails:hover,
 #chatread ul li.material:hover,
 #sidebar .queueMessage:hover {
@@ -294,63 +310,63 @@ body,
 }
 
 .user0 {
-    background-color: rgba(255, 152, 0, 0.7);
+    background-color: rgba(255, 152, 0, 0.625);
 }
 
 .user1 {
-    background-color: rgba(255, 87, 34, 0.7);
+    background-color: rgba(255, 87, 34, 0.625);
 }
 
 .user2 {
-    background-color: rgba(233, 30, 99, 0.7);
+    background-color: rgba(233, 30, 99, 0.625);
 }
 
 .user3 {
-    background-color: rgba(0, 150, 136, 0.7);
+    background-color: rgba(0, 150, 136, 0.625);
 }
 
 .user4 {
-    background-color: rgba(103, 58, 183, 0.7);
+    background-color: rgba(103, 58, 183, 0.625);
 }
 
 .user5 {
-    background-color: rgba(205, 220, 57, 0.7);
+    background-color: rgba(205, 220, 57, 0.625);
 }
 
 .user6 {
-    background-color: rgba(156, 39, 176, 0.7);
+    background-color: rgba(156, 39, 176, 0.625);
 }
 
 .user7 {
-    background-color: rgba(76, 175, 80, 0.7);
+    background-color: rgba(76, 175, 80, 0.625);
 }
 
 .user8 {
-    background-color: rgba(255, 193, 7, 0.7);
+    background-color: rgba(255, 193, 7, 0.625);
 }
 
 .user9 {
-    background-color: rgba(0, 188, 212, 0.7);
+    background-color: rgba(0, 188, 212, 0.625);
 }
 
 .user10 {
-    background-color: rgba(139, 195, 74, 0.7);
+    background-color: rgba(139, 195, 74, 0.625);
 }
 
 .user11 {
-    background-color: rgba(33, 150, 243, 0.7);
+    background-color: rgba(33, 150, 243, 0.625);
 }
 
 .user12 {
-    background-color: rgba(255, 235, 59, 0.7);
+    background-color: rgba(255, 235, 59, 0.625);
 }
 
 .user13 {
-    background-color: rgba(63, 81, 181, 0.7);
+    background-color: rgba(63, 81, 181, 0.625);
 }
 
 .user14 {
-    background-color: rgba(244, 67, 54, 0.7);
+    background-color: rgba(244, 67, 54, 0.625);
 }
 
 #chatread .user0.unselected .messages .customer.temp {
@@ -603,79 +619,3 @@ p.user14.smrply {
         max-width: 200px;
     }
 }
-
-/* .user15 {
-    background-color: rgba(3, 169, 244, 0.7);
-} */
-/* #chatdetails p.user15.smrply {
-    color: rgb(3, 169, 244);
-    border: rgba(3, 169, 244, 0.725) solid 1.85px;
-} */
-/* #chatdetails p.user0,
-#chatdetails h3.user0 {
-    color: rgb(255, 152, 0);
-} */
-/* #chatdetails p.user1,
-#chatdetails h3.user1 {
-    color: rgb(255, 87, 34);
-} */
-/* #chatdetails p.user2,
-#chatdetails h3.user2 {
-    color: rgb(233, 30, 99);
-} */
-/* #chatdetails p.user3,
-#chatdetails h3.user3 {
-    color: rgb(0, 150, 136);
-} */
-/* #chatdetails p.user4,
-#chatdetails h3.user4 {
-    color: rgb(103, 58, 183);
-} */
-/* #chatdetails p.user5,
-#chatdetails h3.user5 {
-    color: rgb(205, 220, 57);
-} */
-/* #chatdetails p.user6,
-#chatdetails h3.user6 {
-    color: rgb(156, 39, 176);
-} */
-/* #chatdetails p.user7,
-#chatdetails h3.user7 {
-    color: rgb(76, 175, 80);
-} */
-/* #chatdetails p.user8,
-#chatdetails h3.user8 {
-    color: rgb(255, 193, 7);
-} */
-/* #chatdetails p.user9,
-#chatdetails h3.user9 {
-    color: rgb(0, 188, 212);
-} */
-/* #chatdetails p.user10,
-#chatdetails h3.user10 {
-    color: rgb(139, 195, 74);
-} */
-/* #chatdetails p.user11,
-#chatdetails h3.user11 {
-    color: rgb(33, 150, 243);
-} */
-/* #chatdetails p.user12,
-#chatdetails h3.user12 {
-    color: rgb(255, 235, 59);
-} */
-/* #chatdetails p.user13,
-#chatdetails h3.user13 {
-    color: rgb(63, 81, 181);
-} */
-/* #chatdetails p.user14,
-#chatdetails h3.user14 {
-    color: rgb(244, 67, 54);
-} */
-/* #chatdetails p.user15,
-#chatdetails h3.user15 {
-    color: rgb(3, 169, 244);
-} */
-/* #chatdetails p,
-#chatdetails h3 {
-    background-color: rgba(0, 0, 0, 0);
-} */

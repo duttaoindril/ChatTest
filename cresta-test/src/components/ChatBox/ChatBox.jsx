@@ -26,7 +26,11 @@ class ChatBox extends Component {
                     id="chatdetails"
                     className={"material padCont user" + this.props.state.currentUser}
                     onClick={e => this.props.switchTo(this.props.state.currentUser)}>
-                    <h3>{this.props.state.conversations[this.props.state.currentUser].name + " - #" + (this.props.state.currentUser + 1)}</h3>
+                    <h3>
+                        {this.props.state.conversations[this.props.state.currentUser].name +
+                            " - #" +
+                            (parseInt(this.props.state.currentUser, 10) + 1)}
+                    </h3>
                     <p>{this.state.lastSentTime + "s ago last sent"}</p>
                     <p>{this.state.lastRecievedTime + "s ago last recieved"}</p>
                 </div>

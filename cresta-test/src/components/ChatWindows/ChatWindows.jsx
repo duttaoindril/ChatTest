@@ -5,13 +5,13 @@ const ChatWindows = props => (
         <ul className="padBox">
             <li />
             <li />
-            {props.state.conversations.map((chatWindow, index) => (
+            {Object.values(props.state.conversations).map((chatWindow, index) => (
                 <li
                     onClick={() => props.windowClick(chatWindow.id)}
                     className={"container material user" + chatWindow.id + (chatWindow.id === props.state.currentUser ? "" : " unselected")}
                     key={chatWindow.name + chatWindow.id}>
                     <img src={props.face} alt="Placeholder Customer Avatar" />
-                    <h3>{chatWindow.name + " - #" + (chatWindow.id + 1)}</h3>
+                    <h3>{chatWindow.name + " - #" + (parseInt(chatWindow.id, 10) + 1)}</h3>
                     <hr />
                     <ChatWindowMessages data={chatWindow} state={props.state} />
                 </li>

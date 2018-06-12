@@ -5,10 +5,10 @@ const ChatBar = props => (
             <input
                 name="chat"
                 id="chatboxinput"
-                autoFocus
                 spellCheck
                 type="text"
                 placeholder="Chat here..."
+                autoComplete="off"
                 onChange={props.onType}
                 value={props.state.currentText}
             />
