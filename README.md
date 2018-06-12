@@ -1,4 +1,4 @@
-# Cresta Test
+# Chat Test
 
 ## Front End Take-Home Project Requirements:
 

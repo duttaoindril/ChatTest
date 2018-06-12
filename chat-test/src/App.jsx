@@ -1,20 +1,29 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import { HotKeys } from "react-hotkeys";
-import socketIOClient from "socket.io-client";
-import { ToastContainer, toast } from "react-toastify";
+// REDUXIFY = "Move to Redux"
+import React, { Component } from "react"; // Imports React
+import ReactDOM from "react-dom"; // Imports React DOM for portals I used for modals & title injection
+import { HotKeys } from "react-hotkeys"; // Imports the ability to bind hotkey events to element containers
+import socketIOClient from "socket.io-client"; // Imports the ability to handle sockets as a client; REDUXIFY
+import { ToastContainer, toast } from "react-toastify"; // Imports the ability to create "toasts" to switch
 import "react-toastify/dist/ReactToastify.css";
-// import logo from "./assets/Cresta Logo.svg";
+// import logo from "./assets/Chat Logo.svg";
 import "./styles/App.css";
 import face from "./assets/avatarPlaceholder.png";
 import ChatBox from "./components/ChatBox/ChatBox.jsx";
 import ChatBar from "./components/ChatBar/ChatBar.jsx";
 import ChatQueue from "./components/ChatQueue/ChatQueue.jsx";
 import ChatWindows from "./components/ChatWindows/ChatWindows.jsx";
-// TODO: Add comments everywhere
-const socket = socketIOClient("http://127.0.0.1:3001");
+const socket = socketIOClient("http://127.0.0.1:3001"); // Connects client to socket server, consider how to dynamically get URL; REDUXIFY
 export default class App extends Component {
     state = {
+        /*
+            This is the initial state.
+            The userID is the id of the user from the socket server, REDUXIFY
+            The username is the name of the user in the socket server, REDUXIFY
+            The currentUser is the currently selected target the user agent is talking to, REDUXIFY
+            The currentText is the currently typed input of the user agent, REDUXIFY
+            The conversations is an object of user details and conversation arrays, REDUXIFY
+            The toastOptions is an object of options for the toast to use
+        */
         userId: -1,
         username: "",
         currentUser: 0,
@@ -29,6 +38,9 @@ export default class App extends Component {
                     // TODO: Add more messages to fully explain the app
                     { sent: 0, text: "Hello Agent!" },
                     { sent: 0, text: "This is a tutorial chat." },
+                    { sent: 0, text: "Messages can have emojis  and be styled with markdown:" },
+                    { sent: 0, text: "To italicize simply use * *single asterisks* *." },
+                    { sent: 0, text: "To bold simply use ** **double asterisks** **." },
                     { sent: 0, text: "When other people **open this website**, they will pop up, and you can chat with them." }
                 ]
             }
@@ -229,11 +241,8 @@ export default class App extends Component {
         this.setFocusToTextBox();
     };
     switchWindow = i => {
-        console.log("what?");
         if (!this.windowExists(i)) return;
-        console.log("what wheahwhawhawhawhhaw?");
-        console.log(i);
-        this.setState({ currentUser: i });
+        this.setState({ currentUser: i }, () => console.log("NOW!!!!"));
     };
     setFocusToTextBox = () => {
         if (document.getElementById("chatboxinput")) document.getElementById("chatboxinput").focus();

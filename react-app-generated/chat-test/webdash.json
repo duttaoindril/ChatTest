@@ -3,7 +3,7 @@
     "dist": "./dist/",
     "jsBudgetLimit": 200,
     "jsBudgetPath": "./dist/*.js",
-    "manifestPath": "./C:\\Users\\dutta\\Documents\\GitHub\\CrestaTest\\react-app-generated\\cresta-test\\public\\manifest.json",
+    "manifestPath": "./C:\\Users\\dutta\\Documents\\GitHub\\ChatTest\\react-app-generated\\chat-test\\public\\manifest.json",
     "readableAssets": {
         "./src/assets/": "/assets/"
     },

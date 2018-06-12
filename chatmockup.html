@@ -1,17 +1,13 @@
 <html>
-<!-- cls && cd C:\Users\dutta\Documents\GitHub\CrestaTest\react-app-generated && start chrome http://localhost:3000/crestchatmockup.html && http-server -a localhost -p 3000 -->
-<!-- cls && cd C:\Users\dutta\Documents\GitHub\CrestaTest\react-app-generated && browser-sync start --proxy "localhost:3000" -b "chrome" --startPath "/crestchatmockup.html" --files "**/*" -->
+<!-- cls && cd C:\Users\dutta\Documents\GitHub\ChatTest\react-app-generated && start chrome http://localhost:3000/chatmockup.html && http-server -a localhost -p 3000 -->
+<!-- cls && cd C:\Users\dutta\Documents\GitHub\ChatTest\react-app-generated && browser-sync start --proxy "localhost:3000" -b "chrome" --startPath "/chatmockup.html" --files "**/*" -->
 
 <!-- document.querySelector("#chatread ul").scrollLeft = document.querySelector("#chatread .user"+i).offsetLeft-50; -->
 <!-- document.querySelector("#chatread ul").scrollLeft = document.querySelector("#chatread .user"+i).offsetLeft-document.querySelector("#chatread
 .user"+i).clientWidth-100; -->
-<!-- document.querySelector("#chatread ul").scrollLeft = document.querySelector("#chatread .user0").offsetLeft - (document.querySelector("#chatread").clientWidth - document.querySelector("#chatread .user0").clientWidth)/2 -->
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
-    <title>CrestChat Mockup</title>
+    <title>chat Mockup</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
     <!-- <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet"> -->
     <style>
@@ -147,29 +143,29 @@
             flex-direction: column;
         }
 
-        #chatdetails {
+        #chatdeets {
             display: flex;
             flex-direction: row;
         }
 
-        #chatdetails>* {
+        #chatdeets>* {
             margin-top: auto;
             margin-bottom: auto;
             margin-right: 20px;
         }
 
-        #chatdetails img {
+        #chatdeets img {
             width: 6%;
         }
 
-        #chatdetails .smrply {
+        #chatdeets .smrply {
             width: fit-content;
             height: fit-content;
             border-radius: 100px;
         }
 
         #chatbar {
-            width: calc(100% - 325px);
+            width: 100%;
             align-self: flex-end;
         }
 
@@ -279,168 +275,168 @@
             background-color: rgba(156, 39, 176, .725);
         }
 
-        #chatdetails p.user0,
-        #chatdetails h3.user0 {
+        #chatdeets p.user0,
+        #chatdeets h3.user0 {
             color: rgb(255, 152, 0);
         }
 
-        #chatdetails p.user0.smrply {
+        #chatdeets p.user0.smrply {
             color: rgb(255, 152, 0);
             border: rgba(255, 152, 0, .725) solid 1.85px;
         }
 
-        #chatdetails p.user1,
-        #chatdetails h3.user1 {
+        #chatdeets p.user1,
+        #chatdeets h3.user1 {
             color: rgb(255, 87, 34);
         }
 
-        #chatdetails p.user1.smrply {
+        #chatdeets p.user1.smrply {
             color: rgb(255, 87, 34);
             border: rgba(255, 87, 34, .725) solid 1.85px;
         }
 
-        #chatdetails p.user2,
-        #chatdetails h3.user2 {
+        #chatdeets p.user2,
+        #chatdeets h3.user2 {
             color: rgb(233, 30, 99);
         }
 
-        #chatdetails p.user2.smrply {
+        #chatdeets p.user2.smrply {
             color: rgb(233, 30, 99);
             border: rgba(233, 30, 99, .725) solid 1.85px;
         }
 
-        #chatdetails p.user3,
-        #chatdetails h3.user3 {
+        #chatdeets p.user3,
+        #chatdeets h3.user3 {
             color: rgb(0, 150, 136);
         }
 
-        #chatdetails p.user3.smrply {
+        #chatdeets p.user3.smrply {
             color: rgb(0, 150, 136);
             border: rgba(0, 150, 136, .725) solid 1.85px;
         }
 
-        #chatdetails p.user4,
-        #chatdetails h3.user4 {
+        #chatdeets p.user4,
+        #chatdeets h3.user4 {
             color: rgb(103, 58, 183);
         }
 
-        #chatdetails p.user4.smrply {
+        #chatdeets p.user4.smrply {
             color: rgb(103, 58, 183);
             border: rgba(103, 58, 183, .725) solid 1.85px;
         }
 
-        #chatdetails p.user5,
-        #chatdetails h3.user5 {
+        #chatdeets p.user5,
+        #chatdeets h3.user5 {
             color: rgb(205, 220, 57);
         }
 
-        #chatdetails p.user5.smrply {
+        #chatdeets p.user5.smrply {
             color: rgb(205, 220, 57);
             border: rgba(205, 220, 57, .725) solid 1.85px;
         }
 
-        #chatdetails p.user6,
-        #chatdetails h3.user6 {
+        #chatdeets p.user6,
+        #chatdeets h3.user6 {
             color: rgb(3, 169, 244);
         }
 
-        #chatdetails p.user6.smrply {
+        #chatdeets p.user6.smrply {
             color: rgb(3, 169, 244);
             border: rgba(3, 169, 244, .725) solid 1.85px;
         }
 
-        #chatdetails p.user7,
-        #chatdetails h3.user7 {
+        #chatdeets p.user7,
+        #chatdeets h3.user7 {
             color: rgb(76, 175, 80);
         }
 
-        #chatdetails p.user7.smrply {
+        #chatdeets p.user7.smrply {
             color: rgb(76, 175, 80);
             border: rgba(76, 175, 80, .725) solid 1.85px;
         }
 
-        #chatdetails p.user8,
-        #chatdetails h3.user8 {
+        #chatdeets p.user8,
+        #chatdeets h3.user8 {
             color: rgb(255, 193, 7);
         }
 
-        #chatdetails p.user8.smrply {
+        #chatdeets p.user8.smrply {
             color: rgb(255, 193, 7);
             border: rgba(255, 193, 7, .725) solid 1.85px;
         }
 
-        #chatdetails p.user9,
-        #chatdetails h3.user9 {
+        #chatdeets p.user9,
+        #chatdeets h3.user9 {
             color: rgb(0, 188, 212);
         }
 
-        #chatdetails p.user9.smrply {
+        #chatdeets p.user9.smrply {
             color: rgb(0, 188, 212);
             border: rgba(0, 188, 212, .725) solid 1.85px;
         }
 
-        #chatdetails p.user10,
-        #chatdetails h3.user10 {
+        #chatdeets p.user10,
+        #chatdeets h3.user10 {
             color: rgb(139, 195, 74);
         }
 
-        #chatdetails p.user10.smrply {
+        #chatdeets p.user10.smrply {
             color: rgb(139, 195, 74);
             border: rgba(139, 195, 74, .725) solid 1.85px;
         }
 
-        #chatdetails p.user11,
-        #chatdetails h3.user11 {
+        #chatdeets p.user11,
+        #chatdeets h3.user11 {
             color: rgb(33, 150, 243);
         }
 
-        #chatdetails p.user11.smrply {
+        #chatdeets p.user11.smrply {
             color: rgb(33, 150, 243);
             border: rgba(33, 150, 243, .725) solid 1.85px;
         }
 
-        #chatdetails p.user12,
-        #chatdetails h3.user12 {
+        #chatdeets p.user12,
+        #chatdeets h3.user12 {
             color: rgb(255, 235, 59);
         }
 
-        #chatdetails p.user12.smrply {
+        #chatdeets p.user12.smrply {
             color: rgb(255, 235, 59);
             border: rgba(255, 235, 59, .725) solid 1.85px;
         }
 
-        #chatdetails p.user13,
-        #chatdetails h3.user13 {
+        #chatdeets p.user13,
+        #chatdeets h3.user13 {
             color: rgb(63, 81, 181);
         }
 
-        #chatdetails p.user13.smrply {
+        #chatdeets p.user13.smrply {
             color: rgb(63, 81, 181);
             border: rgba(63, 81, 181, .725) solid 1.85px;
         }
 
-        #chatdetails p.user14,
-        #chatdetails h3.user14 {
+        #chatdeets p.user14,
+        #chatdeets h3.user14 {
             color: rgb(244, 67, 54);
         }
 
-        #chatdetails p.user14.smrply {
+        #chatdeets p.user14.smrply {
             color: rgb(244, 67, 54);
             border: rgba(244, 67, 54, .725) solid 1.85px;
         }
 
-        #chatdetails p.user15,
-        #chatdetails h3.user15 {
+        #chatdeets p.user15,
+        #chatdeets h3.user15 {
             color: rgb(156, 39, 176);
         }
 
-        #chatdetails p.user15.smrply {
+        #chatdeets p.user15.smrply {
             color: rgb(156, 39, 176);
             border: rgba(156, 39, 176, .725) solid 1.85px;
         }
 
-        #chatdetails p,
-        #chatdetails h3 {
+        #chatdeets p,
+        #chatdeets h3 {
             background-color: rgba(0, 0, 0, 0);
         }
 
@@ -668,7 +664,7 @@
                         <div class="material box padBox user">User Message</div>
                     </div>
                 </li>
-                <li class="container material user6 unselected">
+                <!-- <li class="container material user6 unselected">
                     <img src="./avatarPlaceholder.png">
                     <h3>Customer Name</h3>
                     <hr>
@@ -757,13 +753,13 @@
                         <div class="material box padBox customer">Customer Message</div>
                         <div class="material box padBox user">User Message</div>
                     </div>
-                </li>
+                </li> -->
                 <li></li>
             </ul>
         </div>
         <div id="chatsend">
             <div class="container padBox">
-                <div id="chatdetails">
+                <div id="chatdeets">
                     <img src="./avatarPlaceholder.png">
                     <div>
                         <h3 class="user0">Customer Name</h3>
@@ -780,10 +776,10 @@
                     <p class="smrply user2 box padCont">Smart Reply</p>
                     <p class="smrply user3 box padCont">Smart Reply</p>
                 </div>
+                <div id="chatbar" class="material box padCont user0">
+                    <input type="text" name="chat" autofocus autocorrect spellcheck placeholder="Chat here...">
+                </div>
             </div>
-        </div>
-        <div id="chatbar" class="material box padCont user0">
-            <input type="text" name="chat" autofocus autocorrect spellcheck placeholder="Chat here...">
         </div>
         <div id="sidebar">
             <div class="material container padBox">

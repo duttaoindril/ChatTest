@@ -1,6 +1,6 @@
 {
-    "short_name": "CrestChat",
-    "name": "Cresta Chat Sample",
+    "short_name": "chat",
+    "name": "Chat Chat Sample",
     "icons": [
         {
             "src": "favicon.ico",
