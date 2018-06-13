@@ -1,0 +1,621 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0px;
+}
+
+hr {
+    margin: 10px;
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(38, 50, 56, 0.25);
+    border-bottom: 1px solid rgba(38, 50, 56, 0.25);
+}
+
+#root {
+    margin-top: -16px;
+}
+
+html,
+body,
+#app {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+    font-family: "Roboto", sans-serif;
+    background-color: #e0e0e0;
+    z-index: 1;
+}
+
+#modal {
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: #eeeeee;
+    position: fixed;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#modal div div {
+    display: inline-block;
+    text-align: left;
+    background-color: #37474f;
+    color: #fafafa;
+}
+
+#modal div .box {
+    margin-left: 20px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.box {
+    height: auto;
+    display: inline-block;
+}
+
+.padBox {
+    padding: 10px;
+}
+
+.padCont {
+    padding: 10px 20px;
+}
+
+.padContSmll {
+    padding: 1px 7px;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    overflow-y: auto;
+}
+
+.material {
+    background-color: #fafafa;
+    border-radius: 25px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.16), 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.08);
+}
+
+#chatread {
+    left: 0px;
+    top: 0px;
+    height: calc(100% - 150px);
+    width: calc(100% - 325px);
+    padding-right: 0px;
+}
+
+#chatread ul {
+    height: 100%;
+    padding: 11px 0px 10px 10px;
+    margin-bottom: 0px;
+    display: flex;
+    flex-flow: row;
+    list-style-type: none;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#chatread ul li {
+    flex-grow: 1;
+    margin: 0px 10px;
+    text-align: center;
+    min-width: 450px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#chatread ul li img {
+    width: 75px;
+    height: 75px;
+    margin-top: 7px;
+}
+
+#chatread ul li h3 {
+    margin-top: 10px;
+}
+
+#chatread .messages {
+    display: flex;
+    flex-direction: column;
+}
+
+#chatread .messages .user {
+    align-self: flex-start;
+    margin: 0px 60px 10px 10px;
+    background-color: #37474f;
+    width: fit-content;
+    max-width: calc(100% - 70px);
+    overflow-wrap: break-word;
+}
+
+#chatread .messages .user p {
+    color: #eeeeee;
+}
+
+#chatread .messages .user.temp {
+    color: rgba(238, 238, 238, 0.5);
+    background-color: rgba(55, 71, 79, 0.25);
+}
+
+#chatread .messages .customer {
+    align-self: flex-end;
+    margin: 0px 10px 10px 60px;
+    width: fit-content;
+}
+
+#chatread .messages .customer p {
+    color: #37474f;
+}
+
+#chatread .messages .customer.temp {
+    color: rgba(55, 71, 79, 0.5);
+    background-color: rgba(238, 238, 238, 0.55);
+}
+
+#chatsend {
+    position: absolute;
+    left: 0px;
+    bottom: 50px;
+    width: calc(100% - 330px);
+    height: 100px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+#chatsend img {
+    display: inline-block;
+    height: 100%;
+    width: auto;
+    padding: 10px;
+}
+
+#chatdetails {
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: max-content;
+    height: fit-content;
+    margin: auto 20px auto 0px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#chatreplies {
+    display: inline-flex;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    height: 100%;
+    left: 315px;
+    margin: auto 20px auto 0px;
+    justify-content: center;
+    align-items: center;
+}
+
+#chatreplies .smrply {
+    width: max-content;
+    margin-right: 20px;
+    border-radius: 100px;
+    font-style: italic;
+    font-weight: 400;
+    transition: box-shadow 0.3s ease-in-out;
+    background-color: rgba(55, 71, 79, 1);
+}
+
+#chatreplies .smrply:hover {
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.16), 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+#chatboxbar {
+    width: calc(100% - 325px);
+    min-width: 450px;
+    height: 50px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 9px;
+}
+
+#chatbar {
+    width: 50%;
+    max-width: 750px;
+    min-width: 450px;
+    margin: auto auto;
+    display: block;
+}
+
+#modal input,
+#chatbar input {
+    outline: none;
+    border: none;
+    resize: none;
+    color: #fafafa;
+    background: rgba(0, 0, 0, 0);
+    width: 100%;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    text-align: inherit;
+}
+
+#chatbar input::placeholder {
+    opacity: 0.5;
+    font-style: italic;
+}
+
+#sidebar {
+    right: 0px;
+    top: 0px;
+    width: 350px;
+    height: 100%;
+    position: absolute;
+    padding: 10px;
+}
+
+#sidebar .queueMessage {
+    width: 100%;
+    max-height: 100px;
+    margin-bottom: 13px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#sidebar .queueMessage img {
+    height: 80px;
+    width: auto;
+    display: inline-block;
+}
+
+#sidebar .queueMessage .box {
+    margin-left: 10px;
+    vertical-align: top;
+}
+
+#sidebar .queueMessage .msg p {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#modal div .box:hover,
+#chatsend #chatdetails:hover,
+#chatread ul li.material:hover,
+#sidebar .queueMessage:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16), 0 7px 7px 0 rgba(0, 0, 0, 0.1), 0 6px 6px 0 rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+.user0 {
+    background-color: rgba(255, 152, 0, 0.625);
+}
+
+.user1 {
+    background-color: rgba(255, 87, 34, 0.625);
+}
+
+.user2 {
+    background-color: rgba(233, 30, 99, 0.625);
+}
+
+.user3 {
+    background-color: rgba(0, 150, 136, 0.625);
+}
+
+.user4 {
+    background-color: rgba(103, 58, 183, 0.625);
+}
+
+.user5 {
+    background-color: rgba(205, 220, 57, 0.625);
+}
+
+.user6 {
+    background-color: rgba(156, 39, 176, 0.625);
+}
+
+.user7 {
+    background-color: rgba(76, 175, 80, 0.625);
+}
+
+.user8 {
+    background-color: rgba(255, 193, 7, 0.625);
+}
+
+.user9 {
+    background-color: rgba(0, 188, 212, 0.625);
+}
+
+.user10 {
+    background-color: rgba(139, 195, 74, 0.625);
+}
+
+.user11 {
+    background-color: rgba(33, 150, 243, 0.625);
+}
+
+.user12 {
+    background-color: rgba(255, 235, 59, 0.625);
+}
+
+.user13 {
+    background-color: rgba(63, 81, 181, 0.625);
+}
+
+.user14 {
+    background-color: rgba(244, 67, 54, 0.625);
+}
+
+#chatread .user0.unselected .messages .customer.temp {
+    background-color: rgba(255, 152, 0, 0.55);
+}
+
+#chatread .user1.unselected .messages .customer.temp {
+    background-color: rgba(255, 87, 34, 0.55);
+}
+
+#chatread .user2.unselected .messages .customer.temp {
+    background-color: rgba(233, 30, 99, 0.55);
+}
+
+#chatread .user3.unselected .messages .customer.temp {
+    background-color: rgba(0, 150, 136, 0.55);
+}
+
+#chatread .user4.unselected .messages .customer.temp {
+    background-color: rgba(103, 58, 183, 0.55);
+}
+
+#chatread .user5.unselected .messages .customer.temp {
+    background-color: rgba(205, 220, 57, 0.55);
+}
+
+#chatread .user6.unselected .messages .customer.temp {
+    background-color: rgba(156, 39, 176, 0.55);
+}
+
+#chatread .user7.unselected .messages .customer.temp {
+    background-color: rgba(76, 175, 80, 0.55);
+}
+
+#chatread .user8.unselected .messages .customer.temp {
+    background-color: rgba(255, 193, 7, 0.55);
+}
+
+#chatread .user9.unselected .messages .customer.temp {
+    background-color: rgba(0, 188, 212, 0.55);
+}
+
+#chatread .user10.unselected .messages .customer.temp {
+    background-color: rgba(139, 195, 74, 0.55);
+}
+
+#chatread .user11.unselected .messages .customer.temp {
+    background-color: rgba(33, 150, 243, 0.55);
+}
+
+#chatread .user12.unselected .messages .customer.temp {
+    background-color: rgba(255, 235, 59, 0.55);
+}
+
+#chatread .user13.unselected .messages .customer.temp {
+    background-color: rgba(63, 81, 181, 0.55);
+}
+
+#chatread .user14.unselected .messages .customer.temp {
+    background-color: rgba(244, 67, 54, 0.55);
+}
+
+p.user0.smrply {
+    color: rgb(255, 152, 0);
+    border: rgba(255, 152, 0, 0.725) solid 1.85px;
+}
+
+p.user1.smrply {
+    color: rgb(255, 87, 34);
+    border: rgba(255, 87, 34, 0.725) solid 1.85px;
+}
+
+p.user2.smrply {
+    color: rgb(233, 30, 99);
+    border: rgba(233, 30, 99, 0.725) solid 1.85px;
+}
+
+p.user3.smrply {
+    color: rgb(0, 150, 136);
+    border: rgba(0, 150, 136, 0.725) solid 1.85px;
+}
+
+p.user4.smrply {
+    color: rgb(103, 58, 183);
+    border: rgba(103, 58, 183, 0.725) solid 1.85px;
+}
+
+p.user5.smrply {
+    color: rgb(205, 220, 57);
+    border: rgba(205, 220, 57, 0.725) solid 1.85px;
+}
+
+p.user6.smrply {
+    color: rgb(156, 39, 176);
+    border: rgba(156, 39, 176, 0.725) solid 1.85px;
+}
+
+p.user7.smrply {
+    color: rgb(76, 175, 80);
+    border: rgba(76, 175, 80, 0.725) solid 1.85px;
+}
+
+p.user8.smrply {
+    color: rgb(255, 193, 7);
+    border: rgba(255, 193, 7, 0.725) solid 1.85px;
+}
+
+p.user9.smrply {
+    color: rgb(0, 188, 212);
+    border: rgba(0, 188, 212, 0.725) solid 1.85px;
+}
+
+p.user10.smrply {
+    color: rgb(139, 195, 74);
+    border: rgba(139, 195, 74, 0.725) solid 1.85px;
+}
+
+p.user11.smrply {
+    color: rgb(33, 150, 243);
+    border: rgba(33, 150, 243, 0.725) solid 1.85px;
+}
+
+p.user12.smrply {
+    color: rgb(255, 235, 59);
+    border: rgba(255, 235, 59, 0.725) solid 1.85px;
+}
+
+p.user13.smrply {
+    color: rgb(63, 81, 181);
+    border: rgba(63, 81, 181, 0.725) solid 1.85px;
+}
+
+p.user14.smrply {
+    color: rgb(244, 67, 54);
+    border: rgba(244, 67, 54, 0.725) solid 1.85px;
+}
+
+.user1 input,
+.user1 input::placeholder,
+.user1 h3,
+.user1 p,
+.user2 input,
+.user2 input::placeholder,
+.user2 h3,
+.user2 p,
+.user4 input,
+.user4 input::placeholder,
+.user4 h3,
+.user4 p,
+.user11 input,
+.user11 input::placeholder,
+.user11 h3,
+.user11 p,
+.user13 input,
+.user13 input::placeholder,
+.user13 h3,
+.user13 p,
+.user14 input,
+.user14 input::placeholder,
+.user14 h3,
+.user14 p {
+    color: #eeeeee;
+}
+
+.user0 input,
+.user0 input::placeholder,
+.user0 h3,
+.user0 p,
+.user3 input,
+.user3 input::placeholder,
+.user3 h3,
+.user3 p,
+.user5 input,
+.user5 input::placeholder,
+.user5 h3,
+.user5 p,
+.user6 input,
+.user6 input::placeholder,
+.user6 h3,
+.user6 p,
+.user7 input,
+.user7 input::placeholder,
+.user7 h3,
+.user7 p,
+.user8 input,
+.user8 input::placeholder,
+.user8 h3,
+.user8 p,
+.user9 input,
+.user9 input::placeholder,
+.user9 h3,
+.user9 p,
+.user10 input,
+.user10 input::placeholder,
+.user10 h3,
+.user10 p,
+.user12 input,
+.user12 input::placeholder,
+.user12 h3,
+.user12 p {
+    color: #37474f;
+}
+
+.queueMessage .priority {
+    font-weight: 400;
+    width: fit-content;
+    margin-top: 3px;
+}
+
+.priority.urgent {
+    color: #d50000;
+}
+
+.priority.high {
+    color: #ffab00;
+}
+
+.priority.medium {
+    color: #00c853;
+}
+
+.priority.low {
+    color: #304ffe;
+}
+
+.unselected {
+    background-color: #eceff1;
+}
+
+.unselected h3 {
+    color: #37474f;
+}
+
+@media only screen and (max-width: 825px) {
+    /* 825 225 SMALLEST WIDTH AND HEIGHT CURRENTLY MAINTAINABLE; CAN REMOVE SIDEBAR AT LESS THAN 825 */
+    #sidebar {
+        display: none;
+    }
+    #chatread,
+    #chatsend,
+    #chatboxbar {
+        width: 100%;
+    }
+    #chatbar,
+    #chatboxbar,
+    #chatread ul li {
+        min-width: 200px;
+    }
+    #chatbar {
+        max-width: 200px;
+    }
+}

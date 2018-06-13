@@ -1,0 +1,97 @@
+.Toastify__toast--info {
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    padding: 10px;
+    text-align: inherit;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+}
+
+.switchToast {
+    background-color: #263238;
+    border-radius: 25px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.16), 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.switchToast:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16), 0 7px 7px 0 rgba(0, 0, 0, 0.1), 0 6px 6px 0 rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+.switchToast.user0 {
+    color: rgb(255, 152, 0);
+    border: rgba(255, 152, 0, 0.725) solid 1.85px;
+}
+
+.switchToast.user1 {
+    color: rgb(255, 87, 34);
+    border: rgba(255, 87, 34, 0.725) solid 1.85px;
+}
+
+.switchToast.user2 {
+    color: rgb(233, 30, 99);
+    border: rgba(233, 30, 99, 0.725) solid 1.85px;
+}
+
+.switchToast.user3 {
+    color: rgb(0, 150, 136);
+    border: rgba(0, 150, 136, 0.725) solid 1.85px;
+}
+
+.switchToast.user4 {
+    color: rgb(103, 58, 183);
+    border: rgba(103, 58, 183, 0.725) solid 1.85px;
+}
+
+.switchToast.user5 {
+    color: rgb(205, 220, 57);
+    border: rgba(205, 220, 57, 0.725) solid 1.85px;
+}
+
+.switchToast.user6 {
+    color: rgb(156, 39, 176);
+    border: rgba(156, 39, 176, 0.725) solid 1.85px;
+}
+
+.switchToast.user7 {
+    color: rgb(76, 175, 80);
+    border: rgba(76, 175, 80, 0.725) solid 1.85px;
+}
+
+.switchToast.user8 {
+    color: rgb(255, 193, 7);
+    border: rgba(255, 193, 7, 0.725) solid 1.85px;
+}
+
+.switchToast.user9 {
+    color: rgb(0, 188, 212);
+    border: rgba(0, 188, 212, 0.725) solid 1.85px;
+}
+
+.switchToast.user10 {
+    color: rgb(139, 195, 74);
+    border: rgba(139, 195, 74, 0.725) solid 1.85px;
+}
+
+.switchToast.user11 {
+    color: rgb(33, 150, 243);
+    border: rgba(33, 150, 243, 0.725) solid 1.85px;
+}
+
+.switchToast.user12 {
+    color: rgb(255, 235, 59);
+    border: rgba(255, 235, 59, 0.725) solid 1.85px;
+}
+
+.switchToast.user13 {
+    color: rgb(63, 81, 181);
+    border: rgba(63, 81, 181, 0.725) solid 1.85px;
+}
+
+.switchToast.user14 {
+    color: rgb(244, 67, 54);
+    border: rgba(244, 67, 54, 0.725) solid 1.85px;
+}
